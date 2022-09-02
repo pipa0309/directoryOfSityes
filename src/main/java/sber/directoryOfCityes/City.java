@@ -1,6 +1,8 @@
 package sber.directoryOfCityes;
 
-public class City {
+import java.util.Comparator;
+
+public class City implements Comparator<City> {
     private final String name;
     private final String region;
     private final String district;
@@ -15,6 +17,14 @@ public class City {
         this.foundation = foundation;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
     @Override
     public String toString() {
         return "City{" +
@@ -24,4 +34,10 @@ public class City {
                 ", population=" + population +
                 ", foundation='" + foundation + "'}";
     }
+
+    @Override
+    public int compare(City o1, City o2) {
+        return o1.getName().compareTo(o2.getName());
+    }
 }
+
