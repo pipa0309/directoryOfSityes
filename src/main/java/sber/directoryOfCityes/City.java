@@ -25,6 +25,10 @@ public class City implements Comparator<City> {
         return district;
     }
 
+    public Integer getPopulation() {
+        return population;
+    }
+
     @Override
     public String toString() {
         return "City{" +
@@ -40,4 +44,6 @@ public class City implements Comparator<City> {
         return o1.getName().compareTo(o2.getName());
     }
 }
+
+
 
