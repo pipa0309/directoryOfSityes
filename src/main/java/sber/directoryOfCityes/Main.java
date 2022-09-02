@@ -28,7 +28,7 @@ public class Main {
     public static List<City> parse() {
         List<City> list = new ArrayList<>();
         try {
-            Scanner scanner = new Scanner(new FileInputStream("C:\\Users\\Евгений\\Desktop\\city_ru.csv"));
+            Scanner scanner = new Scanner(new FileInputStream("src/city_ru.csv"));
             while (scanner.hasNextLine()) {
                 list.add(parse(scanner.nextLine()));
             }
