@@ -3,6 +3,7 @@ package sber.directoryOfCityes;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -29,7 +30,17 @@ public class Main {
         /**
          * print value of max element by population with Stream API
          */
-        searchMaxPopulationStreamApi(cities);
+//        searchMaxPopulationStreamApi(cities);
+
+        /**
+         * calculate amount cities by region
+         */
+//        amountCalculate(cities);
+
+        /**
+         * calculate amount cities by region (method merge from Stream API)
+         */
+        amountCitiesMerge(cities);
     }
 
     public static List<City> parse() {
@@ -102,6 +113,25 @@ public class Main {
     private static void printCities(List<City> listCities) {
         for (City city : listCities) {
             System.out.println(city + "\n");
+        }
+    }
+
+    private static void amountCalculate(List<City> listCities) {
+        Map<String, List<City>> collect = listCities.stream()
+                .collect(Collectors.groupingBy(City::getRegion));
+
+        for (Map.Entry<String, List<City>> stringListEntry : collect.entrySet()) {
+            System.out.println(stringListEntry.getKey() + " = " + stringListEntry.getValue().size() + "\n");
+        }
+    }
+
+    private static void amountCitiesMerge(List<City> listCities) {
+        Map<String, Integer> mapCities = new HashMap<>();
+        for (City listCity : listCities) {
+            mapCities.merge(listCity.getRegion(), 1, (curr, next) -> curr + next);
+        }
+        for (Map.Entry<String, Integer> stringIntegerEntry : mapCities.entrySet()) {
+            System.out.println(stringIntegerEntry.getKey() + " = " + stringIntegerEntry.getValue() + "\n");
         }
     }
 }
